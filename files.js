@@ -61,3 +61,11 @@ if (fs.existsSync('./docs/deleteme.txt')){
         });
     })
 }
+/*
+fs.mkdir('./clients&servers',(err)=>{
+    if (err){
+        console.log(err);
+    }
+    console.log('document created');
+})
+*/
