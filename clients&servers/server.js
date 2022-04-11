@@ -10,10 +10,24 @@ const server = http.createServer((req,res)=>{
     res.write('<p>hello, ninjas</p>');
     res.end();
     */
-
-    //send an html file
+    
+    //set header content type
     res.setHeader('Content-type','text/html');
-    fs.readFile('./views/index.html',(err,data)=>{
+    
+    let path = './views/';
+    switch(req.url){
+        case '/':
+            path+='index.html';
+            break;
+        case '/about':
+            path+='about.html';
+            break;
+        default:
+            path+='404.html'
+            break;
+    }
+    //send an html file
+    fs.readFile(path,(err,data)=>{
         if (err){
             console.log(err);
             res.end();
