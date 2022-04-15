@@ -1,5 +1,6 @@
 const express = require('express');
 var morgan = require('morgan');
+const mongoose = require('mongoose');
 
 //connect to mongoDB
 const dbURI = 'mongodb+srv://laajili:test1234@nodetuto.n1hyy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
