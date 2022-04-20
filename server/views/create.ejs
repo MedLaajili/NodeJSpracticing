@@ -3,15 +3,15 @@
 <body>
     <%- include('./partials/nav.ejs') %>
     <div class="create-blog content">
-        <form action="">
+        <form action="/blogs" method="post">
             <label for="title">Blog Title</label>
-            <input type="text" id="title" required>
+            <input type="text" id="title" name="title" required>
             <label for="snippet">Blog Snippet:</label>
-            <input type="text" id="snippet" required>
+            <input type="text" id="snippet" name="snippet" required>
             <label for="body">Content:</label>
-            <textarea name="" id="body" required></textarea>
+            <textarea id="body" name="body" required></textarea>
+            <button>Submit</button>
         </form>
-        <button>Submit</button>
     </div>
 </body>
 <%- include('./partials/footer.ejs')%>
