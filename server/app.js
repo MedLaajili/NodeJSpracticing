@@ -52,6 +52,7 @@ app.get('/single-blog',(req,res)=>{
         });
 });
 
+//routes
 app.get('/',(req,res)=>{
     const blogs = [
         {title:'Rich dad poor dad', snippet:'lorem ipsum dolor sit amet consectetur'},
@@ -65,7 +66,16 @@ app.get('/about',(req,res)=>{
     res.render('about',{title:'About'});
 });
 
-// redirects
+// Blog routes
+app.get('/blogs',(req,res)=>{
+    Blog.find().sort({createdAt:-1})
+    .then((result)=>{
+        res.render('index',{title:'All Blogs', blogs:result})
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+})
 app.get('/blogs/create',(req,res)=>{
     res.render('create',{title:'New Blog'});
 });
