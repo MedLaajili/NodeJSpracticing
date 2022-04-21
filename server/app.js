@@ -2,6 +2,7 @@ const express = require('express');
 var morgan = require('morgan');
 const mongoose = require('mongoose');
 const Blog = require('./Models/blog');
+const { render } = require('ejs');
 
 //connect to mongoDB
 const dbURI = 'mongodb+srv://laajili:test1234@nodetuto.n1hyy.mongodb.net/node-DB?retryWrites=true&w=majority';
@@ -87,6 +88,16 @@ app.post('/blogs',(req,res)=>{
         console.log(err);
     })
 })
+
+app.get('/blogs/:id',(req,res)=>{
+    Blog.findById(req.params.id)
+    .then((result)=>{
+        res.render('details', {blog:result, title:'Blog Details'});
+    })
+    .catch((err)=>{
+        console.log(err);
+    });
+});
 app.get('/blogs/create',(req,res)=>{
     res.render('create',{title:'New Blog'});
 });
