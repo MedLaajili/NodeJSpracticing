@@ -78,6 +78,9 @@ app.get('/blogs',(req,res)=>{
         console.log(err);
     })
 });
+app.get('/blogs/create',(req,res)=>{
+    res.render('create',{title:'New Blog'});
+});
 app.post('/blogs',(req,res)=>{
     const blog = new Blog(req.body);
 
@@ -88,7 +91,7 @@ app.post('/blogs',(req,res)=>{
         console.log(err);
     })
 })
-
+// Display one blog
 app.get('/blogs/:id',(req,res)=>{
     Blog.findById(req.params.id)
     .then((result)=>{
@@ -98,8 +101,16 @@ app.get('/blogs/:id',(req,res)=>{
         console.log(err);
     });
 });
-app.get('/blogs/create',(req,res)=>{
-    res.render('create',{title:'New Blog'});
+//Delete a blog
+app.delete('/blogs/:id',(req,res)=>{
+    const id = req.params.id;
+    Blog.findByIdAndDelete(id)
+    .then((result)=>{
+        res.json({redirect:'/blogs'});
+    })
+    .catch((err)=>{
+        console.log(err);
+    });
 });
 //404 page
 app.use((req,res)=>{
